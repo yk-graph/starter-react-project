@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { memo } from 'react'
 
 const User: React.FC = () => {
   return <div>User</div>
 }
 
-export default User
+export default memo(User)
