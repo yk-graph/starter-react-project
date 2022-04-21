@@ -1,20 +1,21 @@
-import React, { useReducer, createContext, Dispatch, ReactChild } from 'react'
+import React, { useReducer, createContext, Dispatch, ReactNode } from 'react'
 import { UserType } from '../types/User'
 
 type Props = {
-  children: ReactChild
+  children: ReactNode
 }
 type Action = {
   type: string
   key: string
   payload: UserType
 }
-interface Store {
-  state: UserType
-  dispatch: Dispatch<Action>
-}
 
-export const Store = createContext<Store | undefined>(undefined)
+export const Store = createContext(
+  {} as {
+    state: UserType
+    dispatch: Dispatch<Action>
+  }
+)
 
 const initialState = {} as UserType
 
