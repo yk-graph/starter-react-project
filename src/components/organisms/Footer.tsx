@@ -1,6 +1,8 @@
 import React, { memo } from 'react'
 import styled from 'styled-components'
 
+import { FooterHeight } from '../../utils/styles'
+
 const Footer: React.FC = () => {
   return (
     <SFooter>
@@ -12,7 +14,7 @@ const Footer: React.FC = () => {
 export default memo(Footer)
 
 const SFooter = styled.footer`
-  height: 32px;
+  height: ${FooterHeight};
   width: 100vw;
   background: #f4f4f4;
 `

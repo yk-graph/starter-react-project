@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 import Footer from '../organisms/Footer'
 import Header from '../organisms/Header'
+import { FooterHeight, HeaderHeight } from '../../utils/styles'
 
 const DefaultLayout: React.FC = () => {
   return (
@@ -23,7 +24,7 @@ export default DefaultLayout
 
 const SMain = styled.main`
   height: auto;
-  min-height: calc(100vh - 56px - 32px);
+  min-height: calc(100vh - ${HeaderHeight} - ${FooterHeight});
   width: 100vw;
   padding-top: 56px;
 `

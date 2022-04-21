@@ -1,5 +1,6 @@
 import React, { memo } from 'react'
 import styled from 'styled-components'
+import { HeaderHeight } from '../../utils/styles'
 
 import MenuNav from '../molecules/MenuNav'
 
@@ -17,7 +18,7 @@ const Header: React.FC = () => {
 export default memo(Header)
 
 const SHeader = styled.header`
-  height: 56px;
+  height: ${HeaderHeight};
   width: 100vw;
   background: #f4f4f4;
   position: fixed;
