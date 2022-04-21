@@ -21,7 +21,7 @@ const initialState = {} as UserType
 
 export const reducer = (state: UserType, action: Action) => {
   switch (action.type) {
-    case 'setUsers':
+    case 'login':
       return {
         ...state,
         id: action.payload.id,
