@@ -1,46 +1,84 @@
-# Getting Started with Create React App
+# starter-react-project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview(概要)
 
-## Available Scripts
+このプロジェクトは React 開発用のテンプレートプロジェクトです。\
+(create-react-app used npm で作成されたものを拡張)
 
-In the project directory, you can run:
+## Features(機能)
 
-### `npm start`
+- React(create-react-app) `ver18`
+- TypeScript
+- ESLint
+- Prettier
+- React Router `ver6`
+- styled-components `ver5`
+- Axios
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## How To Setup(セットアップ方法)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. ローカルフォルダに任意のディレクトリを作成してクローンする
 
-### `npm test`
+```
+mkdir hoge && cd hoge
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+git clone https://github.com/yk-graph/starter-react-project .
 
-### `npm run build`
+npm install
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. 拡張機能をインストールする
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+npm install -D eslint prettier eslint-config-prettier
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. vscode のワークスペースの setting.json の編集
 
-### `npm run eject`
+VSCode でワークスペースを作成し、その setting.json を編集することをオススメ
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+"settings": {
+  "editor.formatOnSave": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
+}
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## DirectoryStructure(ディレクトリ構成)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+※src 配下以外は省略
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```
+/
+├ src
+  ├ components     // atomicデザインの構成
+    ├ atoms
+    ├ molecules
+    ├ organisms
+    ├ templates    // defualtのレイアウトはここで管理
+  ├ hooks          // カスタムフックはここで管理
+  ├ pages          // NextJS的にページはこのディレクトリに設置
+  ├ router
+    ├ index.tsx    // 認証してるかを判定してリダイレクトの設定をここで管理
+  ├ store
+    ├ index.tsx    // useContext, useReducer でstateの管理
+  ├ types          // TypeScriptの記述
+  ├ utils          // ファイル内で共通で使うような変数とかはここで管理
+```
 
-## Learn More
+## AppStructure(App の構成)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+Provider
+    ├ Router
+      ├ Layout
+          ├ App
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- `root階層のindex.tsx`に Provider(ContextProvider)で wrap している
+- `root階層のindex.tsx`に記述されている Provider(ContextProvider)直下に BrowserRouter の設置
+- `router/index.tsx`で、GlobalState の値から条件を作ってリダイレクトの設定をしている
+- `router/index.tsx`で、templates で作成した defualt のレイアウトを import して wrap している
+- `App.tsx`は`Login.tsx`, `Register.tsx`, `NotFound.tsx`**以外**の pages の親コンポーネントとしいる
