@@ -1,15 +1,28 @@
-import React, { memo } from 'react'
+import React, { memo, useContext } from 'react'
 import styled from 'styled-components'
+
+import { useAuth } from '../../hooks/useAuth'
+import { Store } from '../../store'
+import MenuNav from '../molecules/MenuNav'
 import { HeaderHeight } from '../../utils/styles'
 
-import MenuNav from '../molecules/MenuNav'
-
 const Header: React.FC = () => {
+  const { currentUser } = useAuth()
+  const { dispatch } = useContext(Store)
+
+  const logout = () =>
+    dispatch({
+      type: 'logout',
+    })
+
   return (
     <SHeader>
       <SWrapper>
         <div>LOGO</div>
-        <MenuNav />
+        <SNavWrap>
+          <MenuNav />
+          <SButton onClick={logout}>{currentUser ? 'Logout' : 'Login'}</SButton>
+        </SNavWrap>
       </SWrapper>
     </SHeader>
   )
@@ -31,4 +44,11 @@ const SWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+`
+const SNavWrap = styled.div`
+  display: flex;
+  align-items: center;
+`
+const SButton = styled.button`
+  margin-left: 16px;
 `

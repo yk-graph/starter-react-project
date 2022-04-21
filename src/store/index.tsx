@@ -6,8 +6,8 @@ type Props = {
 }
 type Action = {
   type: string
-  key: string
-  payload: UserType
+  key?: string
+  payload?: UserType
 }
 
 export const Store = createContext(
@@ -24,8 +24,10 @@ export const reducer = (state: UserType, action: Action) => {
     case 'login':
       return {
         ...state,
-        id: action.payload.id,
+        id: action.payload!.id,
       }
+    case 'logout':
+      return initialState
     default:
       return state
   }
